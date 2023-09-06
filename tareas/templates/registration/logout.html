@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- Background image -->
+    <div class="p-2 text-center bg-image">  
+      <br>
+        <div class="d-flex justify-content-center align-items-center h-100">
+         
+          <div class="text-black">
+            <h1 class="mb-3" style="color:#FF0000;">Chao, nos vemos {{users}} !!!!!!!</h1>
+            <h3 class="mb-3" style="color:#7b3dee;">Te esperamos nuevamente con otra experiencia de otro nivel</h3>
+                <img src="{% static 'assets/imagenes/trabajando2.jpg' %}">
+          </div>
+      </div>
+    </div>
+{% endblock  %}

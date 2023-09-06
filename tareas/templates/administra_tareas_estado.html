@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+    <br>
+    <h3>Administración de Tareas, por estado</h3>
+    <br>     
+    <h4>Tareas pendientes o en proceso</h4>
+    <table class="table-secondary table-bordered border-primary bg-white">
+        <thead>
+          <tr style="background-color: rgb(183, 203, 242);">
+            <th scope="col">Estado</th>
+            <th scope="col">Id-Tarea</th>
+            <th scope="col">Título</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Vencimiento</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Observaciones</th>
+            <th scope="col">Asignado a</th>
+            <th scope="col">Prioridad</th>
+            <th scope="col">Acción Editar</th>
+            <th scope="col">Acción Eliminar</th>
+            <th scope="col">Cambiar a "en progreso"</th>
+            <th scope="col">Completa tarea</th>
+          </tr>
+        </thead>
+        {% for p in tareas %}    
+          {% if p.estado_tarea == '1' or p.estado_tarea == '2' %}
+          <tbody class="tareas {{ p.prioridad }}">                                                                      
+                <tr>
+              {% if p.estado_tarea == '1' %}
+                  <td><small>Pendiente</small></td>
+                {% else %}
+                  <td><small>En progreso</small></td>
+              {% endif %}
+                  <td>{{p.id_tarea}}</td>
+                 
+                  <td><small>{{p.titulo_tarea}}</small></td>
+                  <td><small>{{p.descripcion_tarea}}</small></td>
+                  <td><small>{{p.fecha_vencimiento_tarea}}</small></td>
+
+                  {% if p.categoria_tarea == '1' %}
+                      <td><small>Trabajo</small></td>
+                      {% elif p.categoria_tarea == '2' %}
+                            <td><small>Hogar</small></td>
+                      {% elif p.categoria_tarea == '3' %}
+                            <td><small>Estudio</small></td>
+                          {% else %}
+                            <td><small>Otra categoría</small></td>
+                  {% endif %}
+                  
+                  <td><small>{{p.observaciones_tarea}}</small></td>
+                  <td><small>{{p.asignado_a}}</small></td>
+                  <td><small>{{p.prioridad}}</small></td>
+
+
+                  <td> <a name="" id="{p.id_tarea}" class="btn btn-info btn-lg active btn-sm" href="{% url 'modifica_tareas' p.id_tarea %}" role="button" type="button">Editar</a></td>
+                  <td> <a name="" id="{p.id_tarea}" class="btn btn-danger btn-lg active btn-sm" href="{% url 'elimina_tareas' p.id_tarea %}" role="button" type="button">Eliminar</a></td>
+                  <td> <a name="" id="{p.id_tarea}" class="btn btn-success btn-lg active btn-sm" href="{% url 'enProgreso_tareas' p.id_tarea %}" role="button" type="button">En progreso</a></td>   
+                  <td> <a name="" id="{p.id_tarea}" class="btn btn-success btn-lg active btn-sm" href="{% url 'completa_tareas' p.id_tarea %}" role="button" type="button">Completar</a></td>                                         
+            </tbody>
+              {% endif %}
+      {% endfor %}
+      </table>        
+  
+  <br><br>     
+  <h4>Tareas terminadas</h4>
+      <table class="table-secondary table-bordered border-primary bg-white">
+          <thead>
+            <tr style="background-color: rgb(183, 203, 242);">
+              <th scope="col">Estado</th>
+              <th scope="col">Id-Tarea</th>
+              <th scope="col">Título</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Vencimiento</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Observaciones</th>
+              <th scope="col">Asignado a</th>
+              <th scope="col">Prioridad</th>
+              <th scope="col">Acción Editar</th>
+              <th scope="col">Acción Eliminar</th>
+            </tr>
+          </thead>
+          {% for p in tareas %}    
+            {% if p.estado_tarea == '3' %}
+              <tbody class="tareas {{ p.prioridad }}">                                                                      
+                    <tr>
+                      <td><small>Completada</small></td>
+                      <td>{{p.id_tarea}}</td>
+                      <td><small>{{p.titulo_tarea}}</small></td>
+                      <td><small>{{p.descripcion_tarea}}</small></td>
+                      <td><small>{{p.fecha_vencimiento_tarea}}</small></td>
+
+                      {% if p.categoria_tarea == '1' %}
+                          <td><small>Trabajo</small></td>
+                          {% elif p.categoria_tarea == '2' %}
+                                <td><small>Hogar</small></td>
+                          {% elif p.categoria_tarea == '3' %}
+                                <td><small>Estudio</small></td>
+                              {% else %}
+                                <td><small>Otra categoría</small></td>
+                      {% endif %}
+                    
+                      <td><small>{{p.observaciones_tarea}}</small></td>
+                      <td><small>{{p.asignado_a}}</small></td>
+                      <td><small>{{p.prioridad}}</small></td>
+
+
+                      <td> <a name="" id="{p.id_tarea}" class="btn btn-info btn-lg active btn-sm" href="{% url 'modifica_tareas' p.id_tarea %}" role="button" type="button">Editar</a></td>
+                      <td> <a name="" id="{p.id_tarea}" class="btn btn-danger btn-lg active btn-sm" href="{% url 'elimina_tareas' p.id_tarea %}" role="button" type="button">Eliminar</a></td>                 
+              </tbody>     
+            {% endif %}
+          {% endfor %}   
+        </table>        
+  </div>
+{% endblock  %}

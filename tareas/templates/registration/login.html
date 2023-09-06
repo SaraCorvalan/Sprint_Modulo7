@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <br><br>
+    <section class="container">
+      <div class="card-contacto">
+        <div class="card-body">
+          <h3>Login de usuarios</h3>
+          <br><br>
+          <div class="row mt-5">
+            <div class="col-d-12 text-center">
+              {% if formulario.errors %}
+                <p style="color: red;">Usuario y contraseña no coinciden.  Inténtelo nuevamente.</p>
+              {% else %}
+                <p style="color: rgb(65, 76, 240);">Favor, ingresar con el siguente formulario.</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <form action="" method="POST">       
+            {% csrf_token %}
+              <div class="form-group">
+                <div class="col-md-12 text-center">
+                  {{ formulario.usuario.label }}
+                </div>
+                <div class="col-md-12 text-center">
+                    {{ formulario.usuario }}
+                </div>
+              <div>
+
+              <br>
+              <div class="form-group">
+                <div class="col-md-12 text-center">
+                  {{ formulario.password.label }}
+                </div>
+                <div class="col-md-12 text-center">
+                    {{ formulario.password }}
+                </div>
+              <div>
+
+              <br><br>
+              <div class="row">
+                <div class="col-md-12 text-center" style="margin-top: 1rem;">
+                  <button type="submit" id="btnEnviar" class="button btn-primary float-right">Ingresar</button>
+                </div>
+              <div>        
+          </form>         
+        </div>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                  <strong style="color: red;">Mensajes: </strong> {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+        
+      </div>
+    </section>
+{% endblock  %}

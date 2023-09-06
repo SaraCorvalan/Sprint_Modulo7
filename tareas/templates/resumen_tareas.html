@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+    <h3>Resumen de Tareas</h3>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+            <img src="{% static 'assets/imagenes/pendientes.jpg' %}" class="card-img-top" alt="Pendientes">
+          <div class="card-body">
+            <h5 class="card-title">Tareas Pendientes</h5>
+            <p class="card-text">{{ tareas_pendientes }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+            <img src="{% static 'assets/imagenes/progreso.jpg' %}" class="card-img-top" alt="Progreso">
+          <div class="card-body">
+            <h5 class="card-title">Tareas en Progreso</h5>
+            <p class="card-text">{{ tareas_en_progreso }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+            <img src="{% static 'assets/imagenes/completadas.jpg' %}" class="card-img-top" alt="Completadas">
+          <div class="card-body">
+            <h5 class="card-title">Tareas Completadas</h5>
+            <p class="card-text">{{ tareas_completadas }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+            <img src="{% static 'assets/imagenes/atrasadas.jpg' %}" class="card-img-top" alt="Vencidas">
+          <div class="card-body">
+            <h5 class="card-title">Tareas Vencidas</h5>
+            <p class="card-text">{{ tareas_vencidas }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+            {% if user.is_authenticated %}  
+              <div class="container mt-5">
+                <div class="jumbotron">
+                    <h3 class="display-4">Bienvenido a tu Lista de Tareas</h3>
+                    <p class="lead">Aquí puedes administrar todas tus tareas de manera efectiva.</p>
+                    <hr class="my-4">
+                    <p>¡Comienza a ser más productivo hoy mismo!</p>
+                    <a class="btn btn-secondary btn-lg" href="{% url 'registro_tareas' %}" role="button">Agregar Tarea</a>
+                </div>
+            {% endif %}
+            </div>
+            </div>
+            <div class="col-md-8">
+              
+                <div class="p-2 text-center bg-image">  
+                  <br>
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                      <div class="text-black">
+                        <h3 class="mb-3">Bienvenidos  {{users}} </h3>
+                        <img  src="{% static 'assets/imagenes/fondo.jpg' %}" class="img-fluid">
+                      </div>
+                    </div>
+                    <br><br>
+                {% if user.is_authenticated %}  
+                <div class="container">
+                  <h4>Tareas pendientes</h4>
+                  <table class="table-secondary table-bordered border-primary bg-white">
+                      <thead>
+                        <tr style="background-color: rgb(183, 203, 242);">
+                          <th scope="col">Id-Tarea</th>
+                          <th scope="col">Título</th>
+                          <th scope="col">Descripción</th>
+                          <th scope="col">Vencimiento</th>
+                          <th scope="col">Categoría</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Asignado a</th>
+                          <th scope="col">Prioridad</th>
+                          <th scope="col">Acción Editar</th>
+                          <th scope="col">Acción Eliminar</th>
+                          <th scope="col">Cambiar a "en progreso"</th>
+                          <th scope="col">Completa tarea</th>
+                        </tr>
+                      </thead>
+                      {% for p in tareas %}    
+                        {% if p.estado_tarea == '1' %}
+                        <tbody class="tareas {{ p.prioridad }}">                                                                      
+                              <tr>
+                                <td>{{p.id_tarea}}</td>
+                                <td><small>{{p.titulo_tarea}}</small></td>
+                                <td><small>{{p.descripcion_tarea}}</small></td>
+                                <td><small>{{p.fecha_vencimiento_tarea}}</small></td>
+              
+                                {% if p.categoria_tarea == '1' %}
+                                    <td><small>Trabajo</small></td>
+                                    {% elif p.categoria_tarea == '2' %}
+                                          <td><small>Hogar</small></td>
+                                    {% elif p.categoria_tarea == '3' %}
+                                          <td><small>Estudio</small></td>
+                                        {% else %}
+                                          <td><small>Otra categoría</small></td>
+                                {% endif %}
+              
+                                {% if p.estado_tarea == '1' %}
+                                    <td><small>Pendiente</small></td>
+                                {% endif %}
+                                
+                                <td><small>{{p.asignado_a}}</small></td>
+                                <td><small>{{p.prioridad}}</small></td>
+              
+              
+                                <td> <a name="" id="{p.id_tarea}" class="btn btn-info btn-lg active btn-sm" href="{% url 'modifica_tareas' p.id_tarea %}" role="button" type="button">Editar</a></td>
+                                <td> <a name="" id="{p.id_tarea}" class="btn btn-danger btn-lg active btn-sm" href="{% url 'elimina_tareas' p.id_tarea %}" role="button" type="button">Eliminar</a></td>
+                                <td> <a name="" id="{p.id_tarea}" class="btn btn-success btn-lg active btn-sm" href="{% url 'enProgreso_tareas' p.id_tarea %}" role="button" type="button">En progreso</a></td>   
+                                <td> <a name="" id="{p.id_tarea}" class="btn btn-success btn-lg active btn-sm" href="{% url 'completa_tareas' p.id_tarea %}" role="button" type="button">Completar</a></td>                                         
+                          </tbody>
+                            {% endif %}
+                    {% empty %}
+                    <strong>No tienes tareas pendientes.</strong>
+                    
+                    {% endfor %}
+                    </table>        
+                </div>
+            </div>
+            {% endif %}
+            </div>
+            <div class="col-md-2">
+              {% if user.is_authenticated %}  
+              <div class="container mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Organiza tus Tareas</h5>
+                        <p class="card-text">La organización de tareas es esencial para una vida más productiva y menos estresante. Con nuestra herramienta, puedes:</p>
+                        <ul>
+                            <li>Crear listas de tareas con prioridades.</li>
+                            <li>Establecer fechas de vencimiento para recordatorios.</li>
+                            <li>Etiquetar tareas para categorizarlas.</li>
+                            <li>Marcar tareas como completadas una vez que las hayas finalizado.</li>
+                        </ul>
+                        <a href="{% url 'administra_tareas_estado' %}" class="btn btn-secondary">Comienza Ahora</a>
+                    </div>
+                </div>
+            </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}

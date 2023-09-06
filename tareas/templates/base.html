@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'assets/estilos/styles.css' %}" />
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  
+  <title>Sprint_M7_individual</title>
+</head>
+
+<body >
+  {% load crispy_forms_tags %}
+  <div class="container">      
+  <header>
+        <nav class="navbar navbar-expand-lg navbar bg-body-tertiary" data-bs-theme="dark" id="barra" >
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'index' %}">Bienvenidos</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">    
+                  
+                    <li class="dropdown">                      
+                      <a class="nav-link dropdown-toggle" href="#" role="button" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                        <spam style="color: rgb(250, 250, 250);"><strong>Administración de Tareas</strong></spam>
+                      </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                          <li><a class="dropdown-item" href="{% url 'administra_tareas_estado' %}">Administra tareas, por Estado</a></li>
+                          <li><a class="dropdown-item" href="{% url 'administra_tareas_tarea' %}">Administra tareas, por N°Tarea</a></li>
+                          <li><a class="dropdown-item" href="{% url 'administra_tareas_vencimiento' %}">Administra tareas, por Vencimiento</a></li>
+                          <li><a class="dropdown-item" href="{% url 'registro_tareas' %}">Registro de tareas</a></li>
+                          <li><a class="dropdown-item" href="{% url 'resumen_tareas' %}">Resumen de tareas</a></li>
+                        </ul>
+                    </li>                  
+
+                    {% if user.is_authenticated %}        
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'logout' %}"><strong>Cerrar sesión</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" style="color:whitesmoke";><strong>Usuario activo: @{{ user.username}}</strong></a>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}"><strong>Iniciar sesión</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'registro' %}" style="color:whitesmoke;"><strong>Registro usuarios</strong></a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </div>   
+            </div>
+          </nav>
+    </header>
+  </div>
+    
+  {% block  content %}
+  {% endblock  %}
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</body>
+
+<br>
+<footer >
+  <div class="container">
+    <p id="pie">
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=[url]"><img id="pie-img" src="{% static 'assets/imagenes/linkedin_socialnetwork_17441.png' %}" alt="Linkedin">Linkedin</a>
+      <a href="https://twitter.com/intent/tweet?text=[text]&url=[url]&hashtags=[hashtag]"><img id="pie-img" src="{% static 'assets/imagenes/twiter.png' %}">Twitter</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://espai.es"><img id="pie-img" src="{% static 'assets/imagenes/facebook_logo_icon_229298.png' %}" alt="Facebook">Facebook</a>
+    </p>
+    <p>Copyright &copy; 2023 - Desarrollos Informáticos SA</p>
+  </div>
+</footer>
+</html>

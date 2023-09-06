@@ -1,0 +1,127 @@
+h2{
+    color:lightcyan;
+    font-size: 50px;
+}
+#titulo{
+    background-color: #dbdcf5;
+    text-align: center;
+    color:lightblue;
+}
+body{
+    background-color:whitesmoke;
+}
+
+footer {
+	background-color: whitesmoke;
+	height: 50%;
+    text-align: center;
+    padding: 15px;
+    color: rgb(19, 1, 1);  
+}
+#pie{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 100;   
+   
+}
+
+.navbar {
+    background-color: #f8f9fa;
+  }
+.navbar-brand {
+    font-weight: bold;
+  }
+  .nav-item {
+    padding: 0 10px;
+  }
+  .first-color { 
+    background: #a8e6cf; 
+  }
+    
+  .second-color { 
+    background: #fdffab; 
+  }
+  
+  .third-color { 
+    background: #ffd3b6; 
+  }
+  
+  .fourth-color { 
+    background: #ffaaa5; 
+  }
+
+  h2{ 
+    font-family: 'Ubuntu', sans-serif;
+  }
+  h5{ 
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  label{
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+  }
+ 
+  #derecha{
+    background-color:#ffd3b6 ;
+  }
+
+  #derecha:hover{
+    background-color: #9596b9;
+    transform: translate3d(0, -5px, 0);
+  }
+
+#contenidoTabla {
+  font-size: 14px;
+}
+
+td {
+  font-size: 12px;
+}
+
+th {
+  font-size: 12px;
+}
+.img-fluid{
+  transition: transform 0.3s; 
+}
+.img-fluid:hover{
+  transform: scale(1.5) rotate(-7deg);
+
+}
+
+
+/* Estilo para prioridad alta */
+.Alta {
+  background-color:  lightcoral; /* Color de fondo para alta prioridad */
+}
+
+/* Estilo para prioridad media */
+.Mediana {
+  background-color:  lightyellow; /* Color de fondo para media prioridad */
+}
+
+/* Estilo para prioridad baja */
+.Baja {
+  background-color:  lightgreen; /* Color de fondo para baja prioridad */
+}
+
+/* Estilo de hover para todas las filas */
+tr:hover {
+  background-color: #ECECEC; /* Color de fondo al pasar el mouse sobre cualquier fila */
+}
+
+/* Estilo de hover específico para cada prioridad */
+tr.Alta:hover {
+  background-color:red; /* Color rojo para alta prioridad al pasar el mouse sobre alta prioridad */
+}
+
+tr.Mediana:hover {
+  background-color: yellow; /* Color amarillo para media prioridad  al pasar el mouse sobre media prioridad */
+}
+
+tr.Baja:hover {
+  background-color: green; /* Color verde para baja prioridad al pasar el mouse sobre baja prioridad */
+}
+
